@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Project3 [감정 일기장] 만들기
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
