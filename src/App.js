@@ -1,26 +1,30 @@
 import './App.css';
-import Edit from "./pages/Edit";
 import {Link, Route, Routes} from "react-router-dom";
 import React, { useReducer, useRef, useEffect, useState } from "react";
 import Home from "./pages/Home";
 import New from "./pages/New";
 import Diary from "./pages/Diary";
+import Edit from "./pages/Edit";
 
 export const DiaryStateContext = React.createContext();
 export const DiaryDispatchContext = React.createContext();
 
 const mockData = [
-    {id: "mock1",
-    date: new Date().getTime(),
-    content: "mock1",
-    emotionId: 1,
+    {
+        id: "mock1",
+        date: new Date().getTime() - 1,
+        content: "mock1",
+        emotionId: 1,
     },
-    {id: "mock2",
-        date: new Date().getTime(),
-        content: "mock2", emotionId: 2,
+    {
+        id: "mock2",
+        date: new Date().getTime() - 2,
+        content: "mock2",
+        emotionId: 2,
     },
-    { id: "mock3",
-        date: new Date().getTime(),
+    {
+        id: "mock3",
+        date: new Date().getTime() - 3,
         content: "mock3",
         emotionId: 3,
     },
@@ -103,7 +107,7 @@ function App() {
                     <div className="App">
                         <Routes>
                             <Route path="/" element={<Home />} />
-                            <Route path="/new" element={<new />} />
+                            <Route path="/new" element={<New />} />
                             <Route path="/diary/:id" element={<Diary />} />
                             <Route path="/edit/:id" element={<Edit />} />
                         </Routes>
