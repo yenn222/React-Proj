@@ -3,6 +3,7 @@ import Button from "../components/Button";
 import Header from "../components/Header";
 import {DiaryStateContext} from "../App";
 import { getMonthRangeByDate } from "../util";
+import DiaryList from "../components/DiaryList";
 
 const Home = () => {
     const data = useContext(DiaryStateContext);
@@ -35,6 +36,7 @@ const Home = () => {
                 leftChild={<Button text={"<"} onClick={onDecreaseMonth} />}
                 rightChild={<Button text={">"} onClick={onIncreaseMonth} />}
             />
+            <DiaryList date={filteredData} />
         </div>
     );
 };
