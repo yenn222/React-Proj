@@ -12,7 +12,7 @@
 }
 
 .Header button {
-    font-family: "Nanum Pen Script", serif;
+    font-family: "Nanum Pen Script";
 }
 
 .Header .header_title {
@@ -25,7 +25,6 @@
     width: 25%;
     justify-content: start;
 }
-
 
 .Header .header_right {
     width: 25%;

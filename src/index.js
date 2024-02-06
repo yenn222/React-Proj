@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-// import {BrowserRouter} from "react-router-dom";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Home from "./pages/Home";
 import New from "./pages/New";
 import Diary from "./pages/Diary";
@@ -15,7 +14,7 @@ export const router = createBrowserRouter([
         element: <App />,
         children: [
             {
-                index: true,
+                path: '',
                 element: <Home />,
             },
             {
@@ -27,19 +26,12 @@ export const router = createBrowserRouter([
                 element: <Diary />,
             },
             {
-                path: 'edit',
+                path: 'edit/:id',
                 element: <Edit />,
             },
         ],
     },
 ]);
-
-// const root = ReactDOM.createRoot(document.getElementById('root'));
-// root.render(
-//     <BrowserRouter>
-//         <App/>
-//     </BrowserRouter>
-// );
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

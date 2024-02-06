@@ -1,8 +1,8 @@
-import emotion1 from "./img/emotion1.png";
-import emotion2 from "./img/emotion2.png";
-import emotion3 from "./img/emotion3.png";
-import emotion4 from "./img/emotion4.png";
-import emotion5 from "./img/emotion5.png";
+import emotion1 from './img/emotion1.png';
+import emotion2 from './img/emotion2.png';
+import emotion3 from './img/emotion3.png';
+import emotion4 from './img/emotion4.png';
+import emotion5 from './img/emotion5.png';
 
 export const getEmotionImgById = (emotionId) => {
     const targetEmotionId = String(emotionId);
@@ -17,10 +17,8 @@ export const getEmotionImgById = (emotionId) => {
             return emotion4;
         case "5":
             return emotion5;
-        default:
-            return null;
     }
-};
+}
 
 export const getFormattedDate = (targetDate) => {
     let year = targetDate.getFullYear();
@@ -29,10 +27,22 @@ export const getFormattedDate = (targetDate) => {
     if (month < 10) {
         month = `0${month}`;
     }
-    if (date < 10) {
-        date = `0${date}`;
+    if (date < 10){
+        date = `0${date}`
     }
     return `${year}-${month}-${date}`;
+};
+export const getMonthRangeByDate = (date) => {
+    const beginTimeStamp = new Date(date.getFullYear(), date.getMonth(), 1).getTime();
+    const endTimeStamp = new Date(
+        date.getFullYear(),
+        date.getMonth() + 1,
+        0,
+        23,
+        59,
+        59
+    ).getTime();
+    return { beginTimeStamp, endTimeStamp };
 };
 
 export const emotionList = [
@@ -62,18 +72,3 @@ export const emotionList = [
         img: getEmotionImgById(5),
     },
 ];
-
-export const getMonthRangeByDate = (date) => {
-    const beginTimeStamp = new Date(date.getFullYear(), date.getMonth(), 1).getTime();
-    const endTimeStamp = new Date(
-        date.getFullYear(),
-        date.getMonth() + 1,
-        0,
-        23,
-        59,
-        59,
-    ).getTime();
-    return {beginTimeStamp, endTimeStamp};
-};
-
-
