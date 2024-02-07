@@ -1,11 +1,29 @@
 import './App.css';
-import { Routes, Route, Outlet, Link } from "react-router-dom";
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import React, {useEffect, useReducer, useRef, useState} from "react";
 import Home from "./pages/Home";
 import New from "./pages/New";
 import Diary from "./pages/Diary";
 import Edit from "./pages/Edit";
 
+export const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <Home/>,
+    },
+    {
+        path: '/new',
+        element: <New />,
+    },
+    {
+        path: '/diary/:id',
+        element: <Diary />,
+    },
+    {
+        path: '/edit/:id',
+        element: <Edit />,
+    },
+]);
 export const DiaryStateContext = React.createContext();
 export const DiaryDispatchContext = React.createContext();
 
@@ -34,7 +52,7 @@ function reducer(state, action) {
             return action.data;
         }
         case "CREATE": {
-            return [action.date, ...state];
+            return [action.data, ...state];
         }
         case "UPDATE": {
             return state.map((it) =>
@@ -99,6 +117,7 @@ function App() {
         return <div>데이터를 불러오는 중입니다</div>;
     } else {
         return (
+
             <DiaryStateContext.Provider value={data}>
                 <DiaryDispatchContext.Provider
                     value={{
@@ -107,11 +126,13 @@ function App() {
                         onDelete,
                     }}
                 >
-                <div className="App">
-                    <Outlet />
-                </div>
+                    <RouterProvider router={router}>
+                        <div className="App">
+                        </div>
+                    </RouterProvider>
                 </DiaryDispatchContext.Provider>
             </DiaryStateContext.Provider>
+
         );
     }
 }
