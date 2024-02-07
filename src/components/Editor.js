@@ -1,5 +1,5 @@
 import "./Editor.css";
-import {useState, useEffect } from "react";
+import {useState, useEffect, useCallback } from "react";
 import Button from "./Button";
 import {useNavigate} from "react-router-dom";
 import { emotionList, getFormattedDate } from "../util";
@@ -13,20 +13,12 @@ const Editor = ({ initData, onSubmit }) => {
         content: "",
     });
 
-    useEffect(() => {
-        if (initData) {
-            setState({
-                ...initData,
-                date: getFormattedDate(new Date(parseInt(initData.date)))
-            });
-        }
-    }, [initData]);
-    const handleChangeEmotion = (emotionId) => {
-        setState({
+    const handleChangeEmotion = useCallback((emotionId) => {
+        setState((state) => ({
             ...state,
             emotionId,
-        });
-    };
+        }));
+    } ,[]);
     const handleOnGoBack = () => {
         navigate(-1);
     }
@@ -47,13 +39,22 @@ const Editor = ({ initData, onSubmit }) => {
         onSubmit(state);
     };
 
+    useEffect(() => {
+        if (initData) {
+            setState({
+                ...initData,
+                date: getFormattedDate(new Date(parseInt(initData.date)))
+            });
+        }
+    }, [initData]);
+
     return (
         <div className="Editor">
             <div className="editor_section">
                 <h4>오늘의 날짜</h4>
                 <div className="input_wrapper">
                     <input type="date" value={state.date}
-                    onChange={handleChangeDate} />
+                           onChange={handleChangeDate} />
                 </div>
             </div>
             <div className="editor_section">
@@ -61,7 +62,7 @@ const Editor = ({ initData, onSubmit }) => {
                 <div className="input_wrapper emotion_list_wrapper">
                     {emotionList.map((it) => (
                         <EmotionItem key={it.id} {...it} onClick={handleChangeEmotion}
-                             isSelected={state.emotionId === it.id}/>
+                                     isSelected={state.emotionId === it.id}/>
                     ))}
                 </div>
             </div>

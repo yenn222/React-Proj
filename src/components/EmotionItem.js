@@ -8,7 +8,7 @@ const EmotionItem = ({ id, img, name, onClick, isSelected }) => {
 
     return (
         <div className={["EmotionItem", isSelected ? `EmotionItem_on_${id}` : `EmotionItem_off`,].join(" ")}
-            onClick={handleOnClick}>
+             onClick={handleOnClick}>
             <img alt={`emotion${id}`} src={img} />
             <span>{name}</span>
         </div>
@@ -16,4 +16,4 @@ const EmotionItem = ({ id, img, name, onClick, isSelected }) => {
 };
 
 
-export default EmotionItem;
+export default React.memo(EmotionItem);
